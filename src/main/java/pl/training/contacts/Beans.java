@@ -2,7 +2,9 @@ package pl.training.contacts;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+@EnableAspectJAutoProxy
 @Configuration
 public class Beans {
 
@@ -12,8 +14,12 @@ public class Beans {
     }
 
     @Bean
-    public ContactsService contactsService(ContactsRepository  contactsRepository) {
+    public ContactsService contactsService(ContactsRepository contactsRepository) {
         return new ContactsService(contactsRepository);
     }
 
+    @Bean
+    public SuspiciousPersonLogger suspiciousPersonLogger() {
+        return new SuspiciousPersonLogger();
+    }
 }
