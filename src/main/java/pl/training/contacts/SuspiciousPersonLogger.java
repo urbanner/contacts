@@ -3,6 +3,7 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationEventMulticaster;
 
 
@@ -12,6 +13,7 @@ public class SuspiciousPersonLogger  implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher publisher;
     private ApplicationEventMulticaster caster;
+    private ApplicationListener listener;
 
     @AfterReturning("execution(void pl.training.contacts.ContactsService.add(..)) && args(contact)")
     public void check(Contact contact) {
